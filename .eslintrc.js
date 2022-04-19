@@ -13,7 +13,7 @@ module.exports = {
     sourceType: 'module',
     project: ['./tsconfig.json'],
   },
-  plugins: ['react', '@typescript-eslint'],
+  plugins: ['simple-import-sort', 'react', '@typescript-eslint'],
   ignorePatterns: ['.eslintrc.js'],
   rules: {
     'import/no-extraneous-dependencies': [
@@ -38,6 +38,8 @@ module.exports = {
     ],
     'react/react-in-jsx-scope': 'off',
     'no-shadow': 'off',
+    'simple-import-sort/imports': 'error',
+    'simple-import-sort/exports': 'error',
   },
   settings: {
     'import/resolver': {

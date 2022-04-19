@@ -1,4 +1,4 @@
-import { describe, test, expect } from 'vitest'
+import { describe, expect, test } from 'vitest'
 
 const sum = (...args: number[]) => args.reduce((pre, cur) => pre + cur)
 
