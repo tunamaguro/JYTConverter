@@ -9,11 +9,17 @@ use wasm_bindgen::prelude::*;
 static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
 
 #[wasm_bindgen]
-extern {
+extern "C" {
     fn alert(s: &str);
 }
 
 #[wasm_bindgen]
 pub fn greet() {
     alert("Hello, wasm!");
+}
+
+#[wasm_bindgen]
+pub fn j2y(s: &str) -> String {
+    let json: serde_json::Value = serde_json::from_str(s).unwrap();
+    serde_yaml::to_string(&json).unwrap()
 }

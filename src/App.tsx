@@ -1,12 +1,16 @@
 import './App.css'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
+import tsconfig from '../tsconfig.json'
 import logo from './logo.svg'
+import init, { j2y } from './wasm'
 
 function App() {
   const [count, setCount] = useState(0)
-
+  useEffect(() => {
+    init()
+  }, [])
   return (
     <div className="App">
       <header className="App-header">
@@ -15,6 +19,16 @@ function App() {
         <p>
           <button type="button" onClick={() => setCount((count) => count + 1)}>
             count is: {count}
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              const json = JSON.stringify(tsconfig)
+              const yaml = j2y(json)
+              alert(yaml)
+            }}
+          >
+            Run Wasm
           </button>
         </p>
         <p>

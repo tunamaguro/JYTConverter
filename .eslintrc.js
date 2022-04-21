@@ -33,6 +33,7 @@ module.exports = {
         jsx: 'never',
         ts: 'never',
         tsx: 'never',
+        json: 'always',
       },
     ],
     'import/prefer-default-export': 'off',
