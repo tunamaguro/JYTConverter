@@ -1,5 +1,5 @@
-function App() {
-  return <div className="text-3xl font-bold underline">Hello Vite!!</div>
-}
+import { Header } from './Header'
+
+const App = () => <Header />
 
 export default App
