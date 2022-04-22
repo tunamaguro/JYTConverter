@@ -47,6 +47,15 @@ module.exports = {
     '@typescript-eslint/no-shadow': 'off',
     'simple-import-sort/imports': 'error',
     'simple-import-sort/exports': 'error',
+
+    // enforce allow function component style
+    'react/function-component-definition': [
+      'error',
+      {
+        namedComponents: 'arrow-function',
+        unnamedComponents: 'arrow-function',
+      },
+    ],
   },
   settings: {
     'import/resolver': {
