@@ -3,7 +3,13 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-  extends: ['plugin:react/recommended', 'airbnb', 'prettier'],
+  extends: [
+    'plugin:react/recommended',
+    'airbnb',
+    'airbnb/hooks',
+    'airbnb-typescript',
+    'prettier',
+  ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
@@ -18,7 +24,7 @@ module.exports = {
   rules: {
     'import/no-extraneous-dependencies': [
       'error',
-      { devDependencies: ['src/test/*.ts', '**/*.test.ts', '**/*.test.tsx'] },
+      { devDependencies: ['src/test/*', '**/*.test.ts', '**/*.test.tsx'] },
     ],
     'import/extensions': [
       'error',
@@ -27,6 +33,7 @@ module.exports = {
         jsx: 'never',
         ts: 'never',
         tsx: 'never',
+        json: 'always',
       },
     ],
     'import/prefer-default-export': 'off',
@@ -37,7 +44,7 @@ module.exports = {
       },
     ],
     'react/react-in-jsx-scope': 'off',
-    'no-shadow': 'off',
+    '@typescript-eslint/no-shadow': 'off',
     'simple-import-sort/imports': 'error',
     'simple-import-sort/exports': 'error',
   },
