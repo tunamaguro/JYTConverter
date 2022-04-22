@@ -1,16 +1,14 @@
 import './App.css'
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 import tsconfig from '../tsconfig.json'
 import logo from './logo.svg'
-import init, { j2y } from './wasm'
+import { j2y } from './wasm'
 
 function App() {
   const [count, setCount] = useState(0)
-  useEffect(() => {
-    init()
-  }, [])
+
   return (
     <div className="App">
       <header className="App-header">
