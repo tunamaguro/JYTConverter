@@ -24,7 +24,7 @@ module.exports = {
   rules: {
     'import/no-extraneous-dependencies': [
       'error',
-      { devDependencies: ['src/test/*.ts', '**/*.test.ts', '**/*.test.tsx'] },
+      { devDependencies: ['src/test/*', '**/*.test.ts', '**/*.test.tsx'] },
     ],
     'import/extensions': [
       'error',
