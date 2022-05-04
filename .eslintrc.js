@@ -20,7 +20,7 @@ module.exports = {
     project: ['./tsconfig.json'],
   },
   plugins: ['simple-import-sort', 'react', '@typescript-eslint'],
-  ignorePatterns: ['.eslintrc.js'],
+  ignorePatterns: ['.eslintrc.js', 'vite.config.ts'],
   rules: {
     'import/no-extraneous-dependencies': [
       'error',
