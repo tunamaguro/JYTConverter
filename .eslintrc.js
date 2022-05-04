@@ -45,6 +45,7 @@ module.exports = {
     ],
     'react/react-in-jsx-scope': 'off',
     'react/require-default-props': 'off',
+    'react/jsx-props-no-spreading': 'off',
     '@typescript-eslint/no-shadow': 'off',
     'simple-import-sort/imports': 'error',
     'simple-import-sort/exports': 'error',
