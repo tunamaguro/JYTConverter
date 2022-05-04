@@ -11,7 +11,7 @@ const isOptionTuple = (v: unknown): v is OptionsTuple =>
 
 type ConverterBaseProps = {
   onSelectorChange?: (v: OptionsTuple) => void
-  children: ReactChild
+  children?: ReactChild
 }
 
 export const ConverterBase: FC<ConverterBaseProps> = ({
