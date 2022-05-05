@@ -1,5 +1,6 @@
 import { ArrowDown, ArrowRight } from './Arrow'
 import { ConverterInput } from './ConverterInput'
+import { ConverterOutput } from './ConverterOutput'
 import { Header } from './Header'
 
 const App = () => (
@@ -15,7 +16,7 @@ const App = () => (
           <ArrowDown className="block lg:hidden w-8 h-8 my-4 text-gray-500" />
         </div>
         <div className="flex-1">
-          <ConverterInput />
+          <ConverterOutput />
         </div>
       </main>
     </div>
