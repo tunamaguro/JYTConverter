@@ -39,7 +39,7 @@ export const ConverterBase: FC<ConverterBaseProps> = ({
             </select>
           </div>
         </div>
-        <div className="min-h-[16rem] p-4">{children}</div>
+        <div className="min-h-[16rem] p-4 pt-6">{children}</div>
       </div>
     </div>
   )
