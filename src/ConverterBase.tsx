@@ -2,7 +2,7 @@ import { ChangeEventHandler, FC, ReactChild } from 'react'
 
 const options = ['JSON', 'YAML', 'TOML'] as const
 
-type OptionsTuple = keyof {
+export type OptionsTuple = keyof {
   [K in typeof options extends ReadonlyArray<infer U> ? U : never]: string
 }
 
