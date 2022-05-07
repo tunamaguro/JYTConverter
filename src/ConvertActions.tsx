@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 import { j2t, j2y, t2j, t2y, y2j, y2t } from './wasm'
 
 export type State = {
@@ -10,7 +12,7 @@ export const InitialState: State = {
   error: undefined,
 }
 
-type Actions =
+export type Actions =
   | {
       type: 'j2y'
       arg: string
@@ -36,6 +38,9 @@ type Actions =
       arg: string
     }
 
+const formatJson = (text: string) =>
+  JSON.stringify(JSON.parse(text), null, '\t')
+
 export const actions = (action: Actions): State => {
   try {
     switch (action.type) {
@@ -49,15 +54,16 @@ export const actions = (action: Actions): State => {
         }
       case 'y2j':
         return {
-          content: y2j(action.arg),
+          content: formatJson(y2j(action.arg)),
         }
+
       case 'y2t':
         return {
           content: y2t(action.arg),
         }
       case 't2j':
         return {
-          content: t2j(action.arg),
+          content: formatJson(t2j(action.arg)),
         }
       case 't2y':
         return {
@@ -77,5 +83,17 @@ export const actions = (action: Actions): State => {
     return {
       error: new Error('Unexpected Error'),
     }
+  }
+}
+
+export const useJYTConverter = () => {
+  const [Input, setInput] = useState<string>()
+
+  const output = (type: Actions['type']) =>
+    Input ? actions({ type, arg: Input }) : InitialState
+
+  return {
+    setInput,
+    output,
   }
 }
