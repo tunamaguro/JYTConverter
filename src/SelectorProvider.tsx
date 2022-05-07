@@ -7,6 +7,7 @@ import {
   useReducer,
 } from 'react'
 
+import { Actions } from './ConvertActions'
 import { OptionsTuple } from './ConverterBase'
 
 type State = {
@@ -56,5 +57,31 @@ export const SelectorProvider: FC<{ children: ReactNode }> = ({ children }) => {
 }
 
 export const useSelectorValue = () => useContext(SelectorContext)
+
+const ConversionFromTo: Record<
+  OptionsTuple,
+  Record<OptionsTuple, Actions['type']>
+> = {
+  JSON: {
+    JSON: 'j2y',
+    YAML: 'j2y',
+    TOML: 'j2t',
+  },
+  YAML: {
+    JSON: 'y2j',
+    YAML: 'y2j',
+    TOML: 'y2t',
+  },
+  TOML: {
+    JSON: 't2j',
+    YAML: 't2y',
+    TOML: 't2j',
+  },
+}
+
+export const useConversionFromTo = (): Actions['type'] => {
+  const state = useSelectorValue()
+  return ConversionFromTo[state.input][state.output]
+}
 
 export const useSelectorDispatch = () => useContext(setSelectorContext)
