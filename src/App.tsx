@@ -1,58 +1,57 @@
-import './App.css'
+import { ChangeEventHandler, KeyboardEventHandler, useRef } from 'react'
 
-import { useState } from 'react'
+import { ArrowDown, ArrowRight } from './Arrow'
+import { useJYTConverter } from './ConvertActions'
+import { ConverterInput } from './ConverterInput'
+import { ConverterOutput } from './ConverterOutput'
+import { Header } from './Header'
+import { useConversionFromTo } from './SelectorProvider'
 
-import tsconfig from '../tsconfig.json'
-import logo from './logo.svg'
-import { j2y } from './wasm'
+const App = () => {
+  const { value, setInput, output } = useJYTConverter()
+  const ref = useRef<HTMLTextAreaElement>(null)
+  const conversionFromTo = useConversionFromTo()
 
-function App() {
-  const [count, setCount] = useState(0)
+  const handleInput: ChangeEventHandler<HTMLTextAreaElement> = (e) => {
+    setInput(e.target.value)
+  }
 
+  const handleTabKeyDown: KeyboardEventHandler<HTMLTextAreaElement> = (e) => {
+    if (e.key === 'Tab') {
+      e.preventDefault()
+      const text = e.currentTarget.value
+      const start = e.currentTarget.selectionStart
+      const end = e.currentTarget.selectionEnd
+      const left = text.substring(0, start)
+      const right = text.substring(end, text.length)
+      setInput(`${left}  ${right}`)
+    }
+  }
+
+  const result = output(conversionFromTo)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello Vite + React!</p>
-        <p>
-          <button type="button" onClick={() => setCount((count) => count + 1)}>
-            count is: {count}
-          </button>
-          <button
-            type="button"
-            onClick={() => {
-              const json = JSON.stringify(tsconfig)
-              const yaml = j2y(json)
-              alert(yaml)
-            }}
-          >
-            Run Wasm
-          </button>
-        </p>
-        <p>
-          Edit <code>App.tsx</code> and save to test HMR updates.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          {' | '}
-          <a
-            className="App-link"
-            href="https://vitejs.dev/guide/features.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Vite Docs
-          </a>
-        </p>
-      </header>
-    </div>
+    <>
+      <Header />
+      <div className="container mx-auto">
+        <main className="flex flex-col lg:flex-row">
+          <div className="flex-1">
+            <ConverterInput
+              ref={ref}
+              value={value}
+              onInputAreaChange={handleInput}
+              onKeyDown={handleTabKeyDown}
+            />
+          </div>
+          <div className="flex justify-center items-center">
+            <ArrowRight className="hidden lg:block w-8 h-8 mx-4 text-gray-500" />
+            <ArrowDown className="block lg:hidden w-8 h-8 my-4 text-gray-500" />
+          </div>
+          <div className="flex-1">
+            <ConverterOutput content={result.content} error={result.error} />
+          </div>
+        </main>
+      </div>
+    </>
   )
 }
 

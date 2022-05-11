@@ -20,7 +20,7 @@ module.exports = {
     project: ['./tsconfig.json'],
   },
   plugins: ['simple-import-sort', 'react', '@typescript-eslint'],
-  ignorePatterns: ['.eslintrc.js'],
+  ignorePatterns: ['.eslintrc.js', 'vite.config.ts'],
   rules: {
     'import/no-extraneous-dependencies': [
       'error',
@@ -44,9 +44,20 @@ module.exports = {
       },
     ],
     'react/react-in-jsx-scope': 'off',
+    'react/require-default-props': 'off',
+    'react/jsx-props-no-spreading': 'off',
     '@typescript-eslint/no-shadow': 'off',
     'simple-import-sort/imports': 'error',
     'simple-import-sort/exports': 'error',
+
+    // enforce allow function component style
+    'react/function-component-definition': [
+      'error',
+      {
+        namedComponents: 'arrow-function',
+        unnamedComponents: 'arrow-function',
+      },
+    ],
   },
   settings: {
     'import/resolver': {
