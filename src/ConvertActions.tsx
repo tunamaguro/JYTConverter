@@ -93,6 +93,7 @@ export const useJYTConverter = () => {
     Input ? actions({ type, arg: Input }) : InitialState
 
   return {
+    value: Input,
     setInput,
     output,
   }

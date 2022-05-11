@@ -10,11 +10,13 @@ const isOptionTuple = (v: unknown): v is OptionsTuple =>
   options.includes(v as any)
 
 type ConverterBaseProps = {
+  defaultSelected?: OptionsTuple
   onSelectorChange?: (v: OptionsTuple) => void
   children?: ReactChild
 }
 
 export const ConverterBase: FC<ConverterBaseProps> = ({
+  defaultSelected = 'JSON',
   onSelectorChange,
   children,
 }) => {
@@ -34,7 +36,9 @@ export const ConverterBase: FC<ConverterBaseProps> = ({
           <div className="font-roboto text-xl">
             <select className="p-4" onChange={handleChange}>
               {options.map((v) => (
-                <option key={v}>{v}</option>
+                <option key={v} selected={defaultSelected === v}>
+                  {v}
+                </option>
               ))}
             </select>
           </div>

@@ -17,7 +17,7 @@ type State = {
 
 const InitialState: State = {
   input: 'JSON',
-  output: 'JSON',
+  output: 'YAML',
 }
 
 type Action = {
@@ -36,7 +36,7 @@ const reducer = (state: State, action: Action): State => {
     default:
       return {
         input: 'JSON',
-        output: 'JSON',
+        output: 'YAML',
       }
   }
 }

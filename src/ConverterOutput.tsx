@@ -27,6 +27,7 @@ export const ConverterOutput: FC<ConverterOutputProps> = ({
   }
   return (
     <ConverterBase
+      defaultSelected="YAML"
       onSelectorChange={(v) => {
         dispatch({ type: 'ChangeMode', output: v })
       }}
